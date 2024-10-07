@@ -13,8 +13,8 @@ async function getUserData(id) {
   
   const dbSelect = await central(id);
   const data = await dbs[dbSelect]
-  const vaultInfo = await (vault(id))c
-  console.log({id, ...data, vaultInfo})
+  const vaultInfo = await (vault(id))
+  console.log({id, ...data, ...vaultInfo})
 } catch (error) {
   return Promise.reject(error)
 }
