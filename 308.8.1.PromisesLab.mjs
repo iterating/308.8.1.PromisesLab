@@ -12,11 +12,14 @@ async function getUserData(id) {
   try {
   
   const dbSelect = await central(id);
-  const data = await dbs[dbSelect]
-  const vaultInfo = await (vault(id))
-  console.log({id, ...data, ...vaultInfo})
+  // const data = await dbs[dbSelect]
+  // const vaultInfo = await (vault(id))
+  //Promise all with destructuring
+  const [data, vaultInfo] = await Promise.all([dbs[dbSelect], vault(id)])
+  const dataObject = {id, ...data, ...vaultInfo}
+  console.log(dataObject)
 } catch (error) {
   return Promise.reject(error)
 }
 }
-getUserData(1);
+getUserData(4);
